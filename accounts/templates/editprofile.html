@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load avatar_tags %}
+{% block content %}
+
+<div class="container" id="editProfile">
+    <style type="text/css">
+        body {
+            margin-top: 70px;
+        }
+    </style>
+
+        <div class="row row-flex">
+            <p>{% avatar user %}</p>
+            <p>You are logged in as <h3>{{ user.username }}</h3> </p>
+
+            <p>
+                <ul>
+                     <li><a href="{% url 'avatar_change' %}" input type="submit" value="Upload">Change image</a></li>
+                </ul>
+            </p>
+        </div>
+
+
+        <div class="row row-flex">
+            <ul>
+                <form method="post">
+                    <fieldset class="form-group">
+                        <legend>Edit your Profile</legend>
+                        {% csrf_token %}
+                        {{ form | as_bootstrap }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </fieldset>
+                </form>
+            </ul>
+        </div>
+</div>
+
+
+
+{% endblock %}

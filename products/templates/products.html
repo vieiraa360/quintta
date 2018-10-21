@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<!--
+    <div class="container">
+        <div class="display">
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" name="q">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+-->
+<style type="text/css">
+            body {
+                margin-top: 70px;
+            }
+        </style>
+
+    <div class="d-flex justify-content-center">
+        {% for product in products %}
+    
+        <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
+    
+            <div class="panel-body">
+                <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
+    
+                <h3>{{ product.name }}</h3>
+                <p class="product-description">{{ product.description|safe }}</p>
+                <p>£{{ product.price }}</p>
+    
+    
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <div class="input-group col-lg-5">
+                        <input name='quantity' type="number" min="1" max="999" class="form-control" required placeholder="Quantity">
+                        <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add</button>
+                              </span>
+                    </div>
+                    <!-- /input-group -->
+    
+                </form>
+    
+    
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

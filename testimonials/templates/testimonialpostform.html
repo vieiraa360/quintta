@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load static %}
+{% block content %}
+<div class="container" id="testimonialForm">
+        <style type="text/css">
+            body {
+                margin-top: 70px;
+            }
+        </style>
+        <div class="row col-md-auto">
+        <h1>New Testimonial</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn-info">Save</button>
+        </form>
+   </div>
+</div>
+
+{% endblock %}

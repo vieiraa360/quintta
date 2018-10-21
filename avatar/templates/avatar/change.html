@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n avatar_tags %}
+{% load avatar_tags %}
+
+{% block content %}
+{% load bootstrap_tags %}
+
+    <div class="container" id="changeAvatar">
+        <style type="text/css">
+            body {
+                margin-top: 70px;
+            }
+        </style>
+
+    <p>{% trans "Your current avatar: " %}</p>
+    {% avatar user %}
+    {% if not avatars %}
+        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+    {% else %}
+        <form method="POST" action="{% url 'avatar_change' %}">
+            <ul>
+                {{ primary_avatar_form.as_p }}
+            </ul>
+            <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
+        </form>
+    {% endif %}
+    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+        {{ upload_avatar_form.as_p }}
+        <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
+    </form>
+        <div class="row">
+            <p><a href="{% url 'profile' %}" class="btn btn-default">Back To Profile</a></p>
+        </div>
+{% endblock %}
+    </div>

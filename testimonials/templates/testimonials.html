@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% load i18n avatar_tags %}
+{% load avatar_tags %}
+{% block content %}
+
+
+<div class="container">
+        <style type="text/css">
+            body {
+                margin-top: 70px;
+            }
+        </style>
+
+
+    <div class="display">
+    </div>
+
+
+	{% for testimonial in testimonials %}
+	 <span>{% avatar testimonial.author class="img-circle img-responsive" id="user_avatar" %}</span>
+		<div class="row">
+			<div class="col-md-2 col-sm-3 text-center">
+				<a class="story-img" href="/profile/">
+				</a>
+
+                <p><span class="boldtext">Author: </span>{{ testimonial.author }}</p>
+            </div>
+            <div class="col-md-10 col-sm-9">
+                <h3>{{ testimonial.title }}</h3>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <p>{{ testimonial.text|truncatewords:30|safe }}</p>
+                        <p><a href="{% url 'testimonial_detail' testimonial.id %}" class="btn btn-default">Read more</a></p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

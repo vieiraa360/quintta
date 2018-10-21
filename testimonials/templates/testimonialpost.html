@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% load i18n avatar_tags %}
+{% load avatar_tags %}
+{% block content %}
+
+    <div class="container">
+        <style type="text/css">
+            body {
+                margin-top: 70px;
+            }
+        </style>
+<div class="container">
+        <div class="row">
+            <span>{% avatar testimonial.author class="img-circle img-responsive" id="user_avatar" %}</span>
+            <div class="col-md-2 col-sm-3 text-center">
+                <a class="story-img" href="#">
+                </a>
+                <p><span class="boldtext">Author:</span> {{ testimonial.author }}</p>
+            </div>
+            <div class="col-md-10 col-sm-6">
+                <div class="row col-md-12 col-sm-6">
+                    {% if testimonial.image %}
+                        <p><img class="img-testimonialpost" src="/media/{{ testimonial.image }}" width="250px"></p>
+                        <p><br></p>
+                    {% endif %}
+                </div>
+               <p><h3>{{ testimonial.title }}</h3></p>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <p>{{ testimonial.text|safe }}</p>
+                        <p><span class="boldtext">Views:</span> {{testimonial.views}}</p>
+                        <a href="{% url 'get_testimonials' %}" class="btn btn-default">Back To Testimonials</a>
+                        <!--<a href="{% url 'edit_testimonial' testimonial.id %}" class="btn btn-default">Edit Testimonial</a>-->
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+  <div class="row">
+        <div class="col-sm col-sm-6 col-sm">
+          <div class="card" id="card1">
+            <form name="ContactForm" ng-controller="FormController" data-ng-submit="submitForm()" enctype="multipart/form-data" method="POST">
+              {% csrf_token %}
+              <label for="ContactForm"><span style="color: #29335C"><h2>Contact Me</h2></span></label>
+              {{ form | as_bootstrap }}
+              <div class="form-group">
+                <p class="help-block" style="color: #29335C">Can we use your email address to contact you back?</p>
+               <input type="checkbox" name="consent-checkbox" value="consent-checkbox" required id="consent-checkbox"><label for="consent-checkbox" style="color: #29335C">&emsp; Yes please!</label>
+              </div>
+              <button type="submit" id="sendmail" value="Send Email" class="btn btn-primary btn-large"  data-toggle="modal" data-target="#mailSent" ng-disabled="contactForm.$valid">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm col-sm-6 col-sm">
+            <div class="card-img-top grow" id="card2">
+            <img id="img" src="/media/images/mesa-na-varanda.png">
+            </div>
+        </div>
+  </div>
+
+
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37860.61377371186!2d-1.9117472145323269!3d50.735486800628244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487398a0b1a067fd%3A0x3b2ee0156ba92c94!2sBournemouth!5e0!3m2!1sen!2suk!4v1521247469790" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+{% endblock %}

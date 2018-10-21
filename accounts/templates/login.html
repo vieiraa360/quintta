@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    <style type="text/css">
+        body {
+            margin-top: 70px;
+        }
+    </style>
+    <div class="container" id="loginContainer">
+        <div class="row col-md-auto">
+            <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
+                <fieldset class="form-group">
+                    <legend>Please login</legend>
+                    {% csrf_token %}
+                    {{ user_form | as_bootstrap }}
+                    
+                     <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
+                     <p><a href="{% url 'register' %}">Create account</a></p>
+                     
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </fieldset>
+            </form>
+        </div>
+</div>
+
+{% endblock %}

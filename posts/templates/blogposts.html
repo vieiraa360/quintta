@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style type="text/css">
+        body {
+            margin-top: 70px;
+        }
+    </style>
+<div class="container">
+	{% for post in posts %}
+		<div class="row">
+			<div class="col-md-2 col-sm-3 text-center">
+				<a class="story-img" href="#">
+					<img src="/media/img/profile.jpg" class="img-circle" width="100px">
+				</a>
+				
+                <p><span class="boldtext">Author: </span>Admin</p>
+            </div>
+            <div class="col-md-10 col-sm-9">
+                <h3>{{ post.title }}</h3>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <p>{{ post.content|truncatewords:30|safe }}</p>
+                        <p><a href="{% url 'post_detail' post.id %}" class="btn btn-default">Read more</a></p>
+                        <p><span class="boldtext">Published on:</span> {{ post.published_date }} </p>
+                        <p><span class="boldtext">Views:</span> {{post.views}}</p>
+                        <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+    <footer>
+      <div class="row">
+        <p>
+          <span>Copyright © Kambolife | <a href="https://s3.eu-west-2.amazonaws.com/kambo-site/media/images/policy.png" target="_blank">Privacy Policy</a> | <a href="https://s3.eu-west-2.amazonaws.com/kambo-site/cookielaw/docs/cookies_policy.pdf" target="_blank">Cookies Policy</a> | <a href="https://s3.eu-west-2.amazonaws.com/kambo-site/media/images/terms.PNG" target="_blank">Terms of Use</span>
+        </p>
+      </div>
+    </footer>
+{% endblock %}
