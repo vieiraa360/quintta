@@ -23,7 +23,7 @@ colorama==0.3.9
 configobj==5.0.6
 configparser==3.5.0
 coverage==4.5.1
-cryptography==2.3.1
+cryptography==3.2
 distlib==0.2.7
 dj-database-url==0.5.0
 django-admin-menu==1.1
